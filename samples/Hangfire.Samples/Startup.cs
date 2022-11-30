@@ -9,8 +9,9 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Configuration;
-using Hangfire.Console;
 using Hangfire.RecurringJobExtensions;
+using Hangfire.Server;
+
 namespace Hangfire.Samples
 {
 	public class Startup
@@ -39,30 +40,36 @@ namespace Hangfire.Samples
 		// For more information on how to configure your application, visit http://go.microsoft.com/fwlink/?LinkID=398940
 		public void ConfigureServices(IServiceCollection services)
 		{
-			services.AddHangfire(x =>
-			{
-				x.UseSqlServerStorage(_config.GetConnectionString("Hangfire"));
+            
+            
 
-				x.UseConsole();
+   //         services.AddHangfire(x =>
+			//{
+			//	x.UseSqlServerStorage(_config.GetConnectionString("Hangfire"));
 
-				x.UseRecurringJob("recurringjob.json");
+			//	x.UseConsole();
 
-				x.UseRecurringJob(typeof(RecurringJobService));	
+			//	x.UseRecurringJob("recurringjob.json");
 
-				x.UseDefaultActivator();
-			});
+			//	x.UseRecurringJob(typeof(RecurringJobService));	
+
+			//	x.UseDefaultActivator();
+			//});
 		}
 
 		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
 		public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
 		{
-			loggerFactory.AddConsole();
+			
 
 			if (env.IsDevelopment())
 			{
 				app.UseDeveloperExceptionPage();
 			}
 
+			
+            
+            
 			app.UseHangfireServer(new BackgroundJobServerOptions
 			{
 				Queues = new[] { "default", "apis", "jobs" }

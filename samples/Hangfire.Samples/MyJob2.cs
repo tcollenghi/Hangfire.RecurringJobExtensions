@@ -1,7 +1,7 @@
 ﻿using System;
-using Hangfire.Common;
-using Hangfire.Console;
 using Hangfire.RecurringJobExtensions;
+
+
 using Hangfire.Server;
 
 namespace Hangfire.Samples
@@ -16,27 +16,7 @@ namespace Hangfire.Samples
 
 		public void Execute(PerformContext context)
 		{
-			context.WriteLine($"{DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss")} MyJob2 Running ...");
-
-			var intVal = context.GetJobData<int>("IntVal");
-
-			var stringVal = context.GetJobData<string>("StringVal");
-
-			var booleanVal = context.GetJobData<bool>("BooleanVal");
-
-			var simpleObject = context.GetJobData<SimpleObject>("SimpleObject");
-
-			context.WriteLine($"IntVal:{intVal},StringVal:{stringVal},BooleanVal:{booleanVal},simpleObject:{JobHelper.ToJson(simpleObject)}");
-
-			context.SetJobData("IntVal", ++intVal);
-
-			context.WriteLine($"IntVal changed to {intVal}");
-
-			context.SetJobData("NewIntVal", 99);
-
-			var newIntVal = context.GetJobData<int>("NewIntVal");
-
-			context.WriteLine($"NewIntVal:{newIntVal}");
-		}
+            Console.WriteLine("MyJob2.Execute()");
+        }
 	}
 }

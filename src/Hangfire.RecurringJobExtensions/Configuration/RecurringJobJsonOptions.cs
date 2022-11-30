@@ -13,7 +13,7 @@ namespace Hangfire.RecurringJobExtensions.Configuration
 		/// The job name represents for <see cref="RecurringJobInfo.RecurringJobId"/>
 		/// </summary>
 		[JsonProperty("job-name")]
-#if !NET45
+#if !NET48
 		[JsonRequired]
 #endif
 		public string JobName { get; set; }
@@ -21,7 +21,7 @@ namespace Hangfire.RecurringJobExtensions.Configuration
 		/// The job type while impl the interface <see cref="IRecurringJob"/>.
 		/// </summary>
 		[JsonProperty("job-type")]
-#if !NET45
+#if !NET48
 		[JsonRequired]
 #endif
 		public Type JobType { get; set; }
@@ -30,7 +30,7 @@ namespace Hangfire.RecurringJobExtensions.Configuration
 		/// Cron expressions
 		/// </summary>
 		[JsonProperty("cron-expression")]
-#if !NET45
+#if !NET48
 		[JsonRequired]
 #endif
 		public string Cron { get; set; }
